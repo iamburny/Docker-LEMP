@@ -1,10 +1,10 @@
 FROM debian:bullseye-slim
 
-RUN apt install -y nginx gnupg libxml2-dev libpng-dev curl libcurl4-gnutls-dev libxslt-dev libzip-dev libtidy-dev && \
-    wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add - && \
-    echo "deb https://packages.sury.org/php/ bullseye main" | sudo tee /etc/apt/sources.list.d/php.list && \
-    sudo apt -y install -y ca-certificates apt-transport-https && \
-    sudo apt -y update && sudo apt -y upgrade
+RUN apt install -y nginx libxml2-dev libpng-dev curl libcurl4-gnutls-dev libxslt-dev libzip-dev libtidy-dev
+RUN wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+RUN echo "deb https://packages.sury.org/php/ bullseye main" | sudo tee /etc/apt/sources.list.d/php.list
+RUN sudo apt -y install -y ca-certificates apt-transport-https
+RUN sudo apt -y update && sudo apt -y upgrade
 
 RUN sudo apt install -y php7.4 php7.4-cli php7.4-common php7.4-opcache php7.4-curl php7.4-mbstring php7.4-mysql php7.4-zip php7.4-xml php7.4-fpm php7.4-bcmath
 
